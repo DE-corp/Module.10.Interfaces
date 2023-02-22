@@ -2,42 +2,36 @@
 
 namespace Module._10.Interfaces
 {
-    public interface IFile
+    public interface ICreatable
     {
-        void ReadFile();
+        void Create();
     }
 
-    public interface IBinaryFile
+    public interface IDeletable
     {
-        void ReadFile();
-        void OpenBinaryFile();
+        void Delete();
     }
 
-    public interface IMailer
+    public interface IUpdatable
     {
-        void SendMail();
+        void Update();
     }
 
-    class FileManager : IFile, IBinaryFile, IMailer
+    class Entity : ICreatable, IDeletable, IUpdatable
     {
-        public void OpenBinaryFile()
+        public void Create()
         {
-            Console.WriteLine("Открываем бинарный файл");
+            throw new NotImplementedException();
         }
 
-        public void SendMail()
+        public void Delete()
         {
-            Console.WriteLine("Отправляем письмо");
+            throw new NotImplementedException();
         }
 
-        void IFile.ReadFile()
+        public void Update()
         {
-            Console.WriteLine("Читаем текстовый файл");
-        }
-
-        void IBinaryFile.ReadFile()
-        {
-            Console.WriteLine("Читаем бинарный файл");
+            throw new NotImplementedException();
         }
     }
 
@@ -47,14 +41,8 @@ namespace Module._10.Interfaces
         static void Main(string[] args)
         {
 
-            IFile file = new FileManager();
-            IBinaryFile binaryFile = new FileManager();
-            IMailer mailer = new FileManager();
-
-            file.ReadFile();
-            binaryFile.ReadFile();
-            binaryFile.OpenBinaryFile();
-            mailer.SendMail();
+            Entity entity = new Entity();
+            entity.Update();
         }
     }
 }
