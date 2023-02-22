@@ -4,12 +4,12 @@ namespace Module._10.Interfaces
 {
     public interface IWorker
     {
-        public void Build();
+        void Build();
     }
 
     public class Worker : IWorker
     {
-        public void Build()
+        void IWorker.Build()
         {
             Console.WriteLine("Билд!");
         }
@@ -22,7 +22,7 @@ namespace Module._10.Interfaces
 
             Worker worker = new Worker();
 
-            worker.Build();
+            ((IWorker)worker).Build();
         }
     }
 }
