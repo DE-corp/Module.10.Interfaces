@@ -2,36 +2,32 @@
 
 namespace Module._10.Interfaces
 {
-    public interface ICreatable
+    public interface IBook
     {
-        void Create();
+        void Read();
     }
 
-    public interface IDeletable
+    public interface IDevice
     {
-        void Delete();
+        void TurnOn();
+        void TurnOff();
     }
 
-    public interface IUpdatable
+    class ElectronicBook : IBook, IDevice
     {
-        void Update();
-    }
-
-    class Entity : ICreatable, IDeletable, IUpdatable
-    {
-        public void Create()
+        void IBook.Read()
         {
             throw new NotImplementedException();
         }
 
-        public void Delete()
+        void IDevice.TurnOff()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Выкл");
         }
 
-        public void Update()
+        void IDevice.TurnOn()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Вкл");
         }
     }
 
@@ -41,8 +37,9 @@ namespace Module._10.Interfaces
         static void Main(string[] args)
         {
 
-            Entity entity = new Entity();
-            entity.Update();
+            IDevice electronicBook = new ElectronicBook();
+            electronicBook.TurnOn();
+            electronicBook.TurnOff();
         }
     }
 }
