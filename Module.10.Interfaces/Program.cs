@@ -2,42 +2,45 @@
 
 namespace Module._10.Interfaces
 {
-    public class Manager : IManager
+    public interface ILogger
     {
-        public void Create()
-        {
+        void Event(string message);
+        void Error(string message);
 
-        }
-
-        public void Read()
-        {
-
-        }
-
-        public void Update()
-        {
-
-        }
-
-        public void Delete()
-        {
-
-        }
     }
 
-    public interface IManager
+    public interface IWorker
     {
-        public void Create();
-        public void Read();
-        public void Update();
-        public void Delete();
+        void Work();
+    }
+
+    class Logger : ILogger
+    {
+        public void Error(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void Event(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 
     class Program
     {
+        static ILogger Logger { get; set; }
         static void Main(string[] args)
         {
-           
+            Logger = new Logger();
+
+            var worker1 = new Worker1(Logger);
+            var worker2 = new Worker2(Logger);
+            var worker3 = new Worker3(Logger);
+
+            worker1.Work();
+            worker2.Work();
+            worker3.Work();
         }
     }
 }
