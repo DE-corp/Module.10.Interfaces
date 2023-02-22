@@ -2,16 +2,16 @@
 
 namespace Module._10.Interfaces
 {
-    public interface IWriter
+    public interface IWorker
     {
-        void Write();
+        public void Build();
     }
 
-    public class Writer : IWriter
+    public class Worker : IWorker
     {
-        void IWriter.Write()
+        public void Build()
         {
-            Console.WriteLine("Пишу!");
+            Console.WriteLine("Билд!");
         }
     }
 
@@ -20,9 +20,9 @@ namespace Module._10.Interfaces
         static void Main(string[] args)
         {
 
-            Writer writer = new Writer();
+            Worker worker = new Worker();
 
-            ((IWriter)writer).Write();
+            worker.Build();
         }
     }
 }
