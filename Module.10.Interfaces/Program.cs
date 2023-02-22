@@ -2,45 +2,27 @@
 
 namespace Module._10.Interfaces
 {
-    public interface ILogger
+    public interface IWriter
     {
-        void Event(string message);
-        void Error(string message);
-
+        void Write();
     }
 
-    public interface IWorker
+    public class Writer : IWriter
     {
-        void Work();
-    }
-
-    class Logger : ILogger
-    {
-        public void Error(string message)
+        void IWriter.Write()
         {
-            Console.WriteLine(message);
-        }
-
-        public void Event(string message)
-        {
-            Console.WriteLine(message);
+            Console.WriteLine("Пишу!");
         }
     }
 
     class Program
     {
-        static ILogger Logger { get; set; }
         static void Main(string[] args)
         {
-            Logger = new Logger();
 
-            var worker1 = new Worker1(Logger);
-            var worker2 = new Worker2(Logger);
-            var worker3 = new Worker3(Logger);
+            Writer writer = new Writer();
 
-            worker1.Work();
-            worker2.Work();
-            worker3.Work();
+            ((IWriter)writer).Write();
         }
     }
 }
