@@ -2,44 +2,40 @@
 
 namespace Module._10.Interfaces
 {
-    public interface IBook
+    public interface IUpdater<in T>
     {
-        void Read();
+        void Update(T entity);
     }
 
-    public interface IDevice
+    public class UserService : IUpdater<User>
     {
-        void TurnOn();
-        void TurnOff();
-    }
-
-    class ElectronicBook : IBook, IDevice
-    {
-        void IBook.Read()
+        public void Update(User entity)
         {
             throw new NotImplementedException();
         }
-
-        void IDevice.TurnOff()
-        {
-            Console.WriteLine("Выкл");
-        }
-
-        void IDevice.TurnOn()
-        {
-            Console.WriteLine("Вкл");
-        }
     }
 
+    public class User
+    {
+
+    }
+
+    public class Account : User
+    {
+
+    }
 
     class Program
     {
         static void Main(string[] args)
         {
+            var user = new User();
+            var account = new Account();
 
-            IDevice electronicBook = new ElectronicBook();
-            electronicBook.TurnOn();
-            electronicBook.TurnOff();
+            IUpdater<Account> updater = new UserService();
+
+            var userService = new UserService();
+            userService.Update(user);
         }
     }
 }
